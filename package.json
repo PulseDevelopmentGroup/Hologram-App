@@ -21,22 +21,26 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "ust_app"
+            "name": "UST-App"
           }
         },
         {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
           "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
+          "config": {
+            "name": "UST-App"
+          }
+        }
+      ],
+      "publishers": [
         {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "PulseDevelopmentGroup",
+              "name": "UST-App"
+            },
+            "prerelease": true
+          }
         }
       ]
     }
@@ -58,6 +62,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "pino": "^5.17.0",
     "ust-server": "file:../UST/src/server"
   }
 }
