@@ -1,5 +1,5 @@
 import { app, BrowserWindow, Tray, Menu } from "electron";
-import { Server } from "ust-server";
+import Server from "ust-server";
 import * as path from "path";
 
 const title = "Untitled Stream Tool";
