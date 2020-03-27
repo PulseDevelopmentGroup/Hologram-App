@@ -1,13 +1,17 @@
 import { app, BrowserWindow, Tray, Menu } from "electron";
 import Server from "ust-server";
 import * as path from "path";
+import * as pino from "pino";
+import * as yn from "yn";
 
 // Used to prevent app from relaunching with Windows installer
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-const title = "Untitled Stream Tool";
+/* Init basic constants */
+const debug = yn(process.env["DEBUG"]);
+const name = "Hologram";
 const icon = path.join(__dirname, "../assets/icon.png");
 const serverProperties = {
   address: "127.0.0.1",
@@ -15,6 +19,16 @@ const serverProperties = {
   socketPort: 4001,
 };
 
+/* Init Logging */
+const log = pino({
+  name: name,
+  level: `${debug ? "debug" : "info"}`,
+  prettyPrint: debug,
+});
+const appLog = log.child({ module: "app" });
+const serverLog = log.child({ module: "server" });
+
+/* Define variables */
 let mainWindow: Electron.BrowserWindow;
 let server: Server;
 
@@ -22,10 +36,12 @@ let tray = null;
 let isQuitting = false;
 
 function createWindow(): void {
+  appLog.info("Creating new window");
+
   mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
-    title: title,
+    title: name,
     icon: icon,
   });
   mainWindow.loadURL(
@@ -41,7 +57,7 @@ function createWindow(): void {
   });
 
   tray = new Tray(icon);
-  tray.setToolTip(title);
+  tray.setToolTip(name);
   tray.setContextMenu(
     Menu.buildFromTemplate([
       {
@@ -70,10 +86,12 @@ function createWindow(): void {
 }
 
 app.on("ready", () => {
+  appLog.info("App ready");
   server = new Server(
     serverProperties.address,
     serverProperties.httpPort,
-    serverProperties.socketPort
+    serverProperties.socketPort,
+    serverLog
   );
   server.start();
 

@@ -5,7 +5,7 @@
   "description": "Electron wrapper for UST",
   "main": "dist/main.js",
   "scripts": {
-    "start": "tsc && electron-forge start",
+    "start": "tsc && env DEBUG=true electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
@@ -21,13 +21,13 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "UST-App"
+            "name": "Hologram"
           }
         },
         {
           "name": "@electron-forge/maker-deb",
           "config": {
-            "name": "UST-App"
+            "name": "Hologram"
           }
         }
       ],
@@ -58,11 +58,14 @@
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
     "prettier": "^2.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "@types/pino": "^5.17.0",
+    "pino-pretty": "^3.6.1"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "pino": "^5.17.0",
-    "ust-server": "file:../UST/src/server"
+    "ust-server": "file:../UST/src/server",
+    "yn": "^4.0.0"
   }
 }
