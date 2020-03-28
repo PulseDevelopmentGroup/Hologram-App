@@ -1,5 +1,5 @@
 {
-  "name": "Hologram-App",
+  "name": "hologram-app",
   "productName": "Hologram-App",
   "version": "1.0.0",
   "description": "Electron wrapper for Hologram",
