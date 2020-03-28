@@ -1,8 +1,8 @@
 {
-  "name": "ust-app",
-  "productName": "ust-app",
+  "name": "Hologram-App",
+  "productName": "Hologram-App",
   "version": "1.0.0",
-  "description": "Electron wrapper for UST",
+  "description": "Electron wrapper for Hologram",
   "main": "dist/main.js",
   "scripts": {
     "start": "tsc && env DEBUG=true electron-forge start",
@@ -37,7 +37,7 @@
           "config": {
             "repository": {
               "owner": "PulseDevelopmentGroup",
-              "name": "UST-App"
+              "name": "Hologram-App"
             },
             "prerelease": true
           }
@@ -65,7 +65,7 @@
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "pino": "^5.17.0",
-    "ust-server": "file:../UST/src/server",
+    "ust-server": "file:../Hologram/src/server",
     "yn": "^4.0.0"
   }
 }
