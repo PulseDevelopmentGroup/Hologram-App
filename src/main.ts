@@ -1,5 +1,5 @@
 import { app, BrowserWindow, Tray, Menu } from "electron";
-import Server from "ust-server";
+import Server from "@pulsedev/hologram";
 import * as path from "path";
 import * as pino from "pino";
 import * as yn from "yn";
