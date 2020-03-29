@@ -85,7 +85,7 @@ function createWindow(): void {
   );
 }
 
-app.on("ready", () => {
+app.on("ready", async () => {
   appLog.info("App ready");
   server = new Server(
     serverProperties.address,
@@ -93,8 +93,7 @@ app.on("ready", () => {
     serverProperties.socketPort,
     serverLog
   );
-  server.start();
-
+  await server.start();
   createWindow();
 });
 
